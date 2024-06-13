@@ -41,7 +41,7 @@ router.post("/sign-up", async(req,res)=>{
                 address:address,
             });
                 await newUser.save();
-                return res.status(500).json({message:"sign up successful"});
+                return res.status(200).json({message:"sign up successful"});
 
             }catch(error){
         res.status(400).json({message:"Internal server error"});
