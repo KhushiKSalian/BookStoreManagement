@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaGripLines } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -21,6 +22,11 @@ const Navbar = () => {
             link:"/profile",
         },
     ];
+    const isLoggedIn= useSelector((state)=>state.auth.isLoggedIn);
+    if(isLoggedIn===false)
+        {
+            links.splice(2,2);
+        }
   // eslint-disable-next-line no-unused-vars
   const [MobileNav, setMobileNav] = useState("hidden");
   return (

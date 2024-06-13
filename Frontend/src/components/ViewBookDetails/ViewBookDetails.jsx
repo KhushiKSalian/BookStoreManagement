@@ -18,11 +18,11 @@ const ViewBookDetails = () => {
     }, []); 
   return (
  <>
-    {Data &&  <div className='px-12 py-8 bg-zinc-900 flex gap-8'>
-    <div className='bg-zinc-800 rounded p-4 h-[88vh] w-3/6 flex md:flex-row flex-col items-center justify-center'>
-        <img src={Data.url} alt='/' className='h-[70vh]'/>
+    {Data &&  <div className='px-4 md:px-12 py-8 bg-zinc-900 md:flex-row flex-col flex gap-8'>
+    <div className='bg-zinc-800 rounded p-4 h-[60vh] lg:h-[88vh] rounded w-full lg:w-3/6 flex items-center justify-center'>
+    {" "}    <img src={Data.url} alt='/' className=' h-[50vh] lg:h-[70vh]'/>
     </div>
-    <div className='p-4 w-3/6'>
+    <div className='p-4 w-full lg:w-3/6'>
     <h1 className='text-4xl text-zinc-300 font-semibold'>{Data.title}</h1>
     <p className='text-zinc-400 mt-1'>by {Data.author}</p>
     <p className='text-zinc-500 mt-4 text-xl'>{Data.desc}</p>
