@@ -65,7 +65,7 @@ router.get("/get-recent-books", async(req,res)=>{
                      });
                  }catch(error)
                  {
-                     res.status(500).json({message:"An error occured"});
+                    return res.status(500).json({message:"An error occured"});
                  }
              });
 router.get("/get-all-books", async(req,res)=>{
