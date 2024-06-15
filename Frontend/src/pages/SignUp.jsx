@@ -27,8 +27,7 @@ const SignUp = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.error(error);
-      alert("Failed to sign up. Please try again later.");
+      alert(error.response.data.message);
     }
   }
 
