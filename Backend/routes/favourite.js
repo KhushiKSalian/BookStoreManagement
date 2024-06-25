@@ -39,7 +39,7 @@ router.put("/remove-book-from-fav", authenticateToken, async(req,res)=>{
 router.get("/get-fav-books", authenticateToken, async(req,res)=>{
     try{
         const {id}= req.headers;
-        const userData = await User.findById(id);
+        const userData = await User.findById(id).populate('favourites');
         const favouriteBooks = userData.favourites;
         return res.json({status:"Success",
             data: favouriteBooks,
@@ -47,7 +47,7 @@ router.get("/get-fav-books", authenticateToken, async(req,res)=>{
     }
     catch(error)
     {
-        res.status(500).json({message:"Internal server error"});
+        return res.status(500).json({message:"Internal server error"});
     }
 });
 module.exports = router;

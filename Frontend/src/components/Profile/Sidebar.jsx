@@ -1,8 +1,22 @@
 import React from "react";
 import { IoLogOutOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ data }) => {
+  
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.clear();
+
+    // Redirect to home page
+    navigate('/');
+
+  window.location.reload();
+};
+
   return (
     <div className="bg-zinc-800 p-4 rounded flex flex-col items-center justify-between h-[100%]">
       <div className="flex flex-col items-center justify-center">
@@ -37,7 +51,7 @@ const Sidebar = ({ data }) => {
           Settings
         </Link>
       </div>
-      <button className="bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-0
+      <button onClick={handleLogout} className="bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-0
        text-white font-semibold flex items-center justify-center
        py-2 rounded hover:bg-white hover:text-zinc-900 transition-all
        duration-300">

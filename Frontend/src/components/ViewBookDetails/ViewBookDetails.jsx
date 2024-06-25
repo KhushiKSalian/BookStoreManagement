@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import Loader from "../Loader/Loader";
 import { FaShoppingCart } from "react-icons/fa";
@@ -23,25 +25,60 @@ const ViewBookDetails = () => {
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+const headers = {
+    id: localStorage.getItem("id"),
+    authorization : `Bearer ${localStorage.getItem("token")}`,
+    bookid : id
+  }
+  const handleFavourite = async()=>{
+    const response  = await axios.put("http://localhost:3000/api/v1/add-book-to-fav",
+      {},{headers})
+      alert(response.data.message);
+  }
+  const handleCart = async()=>{
+    const response  = await axios.put("http://localhost:3000/api/v1/add-to-cart",
+      {},{headers})
+      alert(response.data.message);
+  }
+  const handleDelete = async()=>{
+    const response  = await axios.delete("http://localhost:3000/api/v1/delete-book",
+      {},{headers})
+      alert(response.data.message);
+  }
+  const handleEdit = async()=>{
+    const response  = await axios.put("http://localhost:3000/api/v1/update-book",
+      {},{headers})
+      alert(response.data.message);
+    }
   return (
     <>
       {Data && (
-        <div className="px-4 md:px-12 py-8 bg-zinc-900 md:flex-row flex-col flex gap-8">
+        <div className="px-4 md:px-12 py-8 bg-zinc-900 lg:flex-row flex-col items-start flex gap-8">
           <div className=" w-full lg:w-3/6">
             {" "}
-            <div className="flex justify-around bg-zinc-800 p-12 rounded">
+            <div className="flex flex-col lg:flex-row justify-around bg-zinc-800 p-12 rounded">
               <img
                 src={Data.url}
                 alt="/"
-                className=" h-[50vh] lg:h-[70vh] rounded"
+                className=" h-[50vh] md:h-[60vh] lg:h-[70vh] rounded"
               />
               {isLoggedIn === true && role === "user" && (
-                <div className="flex md:flex-col ">
-                  <button className="bg-white rounded-full text-3xl p-3 mt-8 text-red-500">
-                    <FaHeart />
+                <div className="flex flex-col md:flex-row items-center justify-between lg:justify-start mt-8 lg:mt-0 lg:flex-col ">
+                  <button className="bg-white rounded  lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3 text-red-500" onClick={handleFavourite}>
+                    <FaHeart /> <span className="ms-4 block lg:hidden">Favourites</span>
+                  </button> 
+                  <button className=" rounded md:mt-0 lg:rounded-full text-4xl p-3 mt-8 bg-blue-500 text-white lg:text-3xl lg:mt-8 flex items-center justify-center" onClick={handleCart}>
+                    <FaShoppingCart /><span className="ms-4 block lg:hidden">Add to cart</span>
                   </button>
-                  <button className="bg-white rounded-full text-3xl p-3 mt-8 text-green-500">
-                    <FaShoppingCart />
+                </div>
+              )}
+                  {isLoggedIn === true && role === "admin" && (
+                <div className="flex flex-row items-center justify-between lg:justify-start mt-8 lg:mt-0 lg:flex-col ">
+                  <button className="bg-white rounded  lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3" onClick={handleEdit}>
+                  <FaEdit /><span className="ms-4 block lg:hidden">Edit</span>
+                  </button> 
+                  <button className="bg-white rounded lg:rounded-full text-4xl p-3 mt-8 md:mt-0 text-red-500 lg:text-3xl lg:mt-8 flex items-center justify-center" onClick={handleDelete}>
+                  <MdDelete /><span className="ms-4 block lg:hidden">Delete Book</span>
                   </button>
                 </div>
               )}

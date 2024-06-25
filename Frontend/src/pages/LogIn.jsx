@@ -48,7 +48,7 @@ const LogIn = () => {
             </label>
             <input
               type="text"
-              className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+              className="w-full mt-2 bg-zinc-900 text-white p-2 outline-none"
               placeholder="username"
               name="username"
               required
@@ -63,7 +63,7 @@ const LogIn = () => {
             </label>
             <input
               type="password"
-              className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+              className="w-full mt-2 bg-zinc-900 text-white p-2 outline-none"
               placeholder="password"
               name="password"
               required

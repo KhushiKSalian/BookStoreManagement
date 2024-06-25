@@ -40,7 +40,7 @@ const SignUp = () => {
             <label htmlFor='' className='text-zinc-400'>
               Username
             </label>
-            <input type='text' className='w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none'
+            <input type='text' className='w-full mt-2 bg-zinc-900 text-white p-2 outline-none'
               placeholder='username'
               name='username'
               required
@@ -52,7 +52,7 @@ const SignUp = () => {
             <label htmlFor='' className='text-zinc-400'>
               Email
             </label>
-            <input type='text' className='w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none'
+            <input type='text' className='w-full mt-2 bg-zinc-900 text-white p-2 outline-none'
               placeholder='email'
               name='email'
               required
@@ -64,7 +64,7 @@ const SignUp = () => {
             <label htmlFor='' className='text-zinc-400'>
               Password
             </label>
-            <input type='text' className='w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none'
+            <input type='text' className='w-full mt-2 bg-zinc-900 text-white p-2 outline-none'
               placeholder='password'
               name='password'
               required
@@ -76,7 +76,7 @@ const SignUp = () => {
             <label htmlFor='' className='text-zinc-400'>
               Address
             </label>
-            <input type='text' className='w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none'
+            <input type='text' className='w-full mt-2 bg-zinc-900 text-white p-2 outline-none'
               placeholder=''
               name='address'
               required
