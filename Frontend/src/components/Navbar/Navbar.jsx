@@ -21,10 +21,22 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
+
   if (isLoggedIn === false) {
     links.splice(2, 2);
+  }
+  if (isLoggedIn === true && role === "user") {
+    links.splice(4, 1);
+  }
+  if (isLoggedIn == true && role === "admin") {
+    links.splice(3, 1);
   }
   // eslint-disable-next-line no-unused-vars
   const [MobileNav, setMobileNav] = useState("hidden");
@@ -42,38 +54,42 @@ const Navbar = () => {
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className=" hidden md:flex gap-4">
             {links.map((items, i) => (
-            <>
-                {items.title === "Profile" ?( <Link
-                to={items.link}
-                className="hover:text-blue-500 border border-blue-500 transition-all duration-300"
-                key={i}
-              >
-                {items.title}
-              </Link>) :(
-              <Link
-              to={items.link}
-              className="hover:text-blue-500 transition-all duration-300"
-              key={i}>
-              {items.title}{" "}
-                </Link> ) }
-            </>
+              <>
+                {items.title === "Profile" || items.title === "Admin Profile" ? (
+                  <Link
+                    to={items.link}
+                    className="hover:text-blue-500 border border-blue-500 transition-all duration-300"
+                    key={i}
+                  >
+                    {items.title}
+                  </Link>
+                ) : (
+                  <Link
+                    to={items.link}
+                    className="hover:text-blue-500 transition-all duration-300"
+                    key={i}
+                  >
+                    {items.title}{" "}
+                  </Link>
+                )}
+              </>
             ))}
           </div>
           {isLoggedIn === false && (
             <div className=" hidden md:flex gap-4">
-            <Link
-              to="/LogIn"
-              className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 "
-            >
-              Log in
-            </Link>
-            <Link
-              to="/SignUp"
-              className="px-4 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 "
-            >
-              Sign up
-            </Link>
-          </div>
+              <Link
+                to="/LogIn"
+                className="px-4 py-1 border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 "
+              >
+                Log in
+              </Link>
+              <Link
+                to="/SignUp"
+                className="px-4 py-1 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 "
+              >
+                Sign up
+              </Link>
+            </div>
           )}
           <button
             className=" md:hidden block text-white text-2xl hover:text-zinc-400"

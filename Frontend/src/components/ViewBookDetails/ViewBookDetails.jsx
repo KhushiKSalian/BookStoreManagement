@@ -8,10 +8,13 @@ import Loader from "../Loader/Loader";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [Data, setData] = useState();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
@@ -25,31 +28,35 @@ const ViewBookDetails = () => {
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-const headers = {
+  const headers = {
     id: localStorage.getItem("id"),
-    authorization : `Bearer ${localStorage.getItem("token")}`,
-    bookid : id
-  }
-  const handleFavourite = async()=>{
-    const response  = await axios.put("http://localhost:3000/api/v1/add-book-to-fav",
-      {},{headers})
-      alert(response.data.message);
-  }
-  const handleCart = async()=>{
-    const response  = await axios.put("http://localhost:3000/api/v1/add-to-cart",
-      {},{headers})
-      alert(response.data.message);
-  }
-  const handleDelete = async()=>{
-    const response  = await axios.delete("http://localhost:3000/api/v1/delete-book",
-      {},{headers})
-      alert(response.data.message);
-  }
-  const handleEdit = async()=>{
-    const response  = await axios.put("http://localhost:3000/api/v1/update-book",
-      {},{headers})
-      alert(response.data.message);
-    }
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    bookid: id,
+  };
+  const handleFavourite = async () => {
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/add-book-to-fav",
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
+  const handleCart = async () => {
+    const response = await axios.put(
+      "http://localhost:3000/api/v1/add-to-cart",
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
+  const deleteBook = async () => {
+    const response = await axios.delete(
+      "http://localhost:3000/api/v1/delete-book",
+      { headers }
+    );
+    alert(response.data.message);
+    navigate("/all-books");
+  };
   return (
     <>
       {Data && (
@@ -64,21 +71,37 @@ const headers = {
               />
               {isLoggedIn === true && role === "user" && (
                 <div className="flex flex-col md:flex-row items-center justify-between lg:justify-start mt-8 lg:mt-0 lg:flex-col ">
-                  <button className="bg-white rounded  lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3 text-red-500" onClick={handleFavourite}>
-                    <FaHeart /> <span className="ms-4 block lg:hidden">Favourites</span>
-                  </button> 
-                  <button className=" rounded md:mt-0 lg:rounded-full text-4xl p-3 mt-8 bg-blue-500 text-white lg:text-3xl lg:mt-8 flex items-center justify-center" onClick={handleCart}>
-                    <FaShoppingCart /><span className="ms-4 block lg:hidden">Add to cart</span>
+                  <button
+                    className="bg-white rounded  lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3 text-red-500"
+                    onClick={handleFavourite}
+                  >
+                    <FaHeart />{" "}
+                    <span className="ms-4 block lg:hidden">Favourites</span>
+                  </button>
+                  <button
+                    className=" rounded md:mt-0 lg:rounded-full text-4xl p-3 mt-8 bg-blue-500 text-white lg:text-3xl lg:mt-8 flex items-center justify-center"
+                    onClick={handleCart}
+                  >
+                    <FaShoppingCart />
+                    <span className="ms-4 block lg:hidden">Add to cart</span>
                   </button>
                 </div>
               )}
-                  {isLoggedIn === true && role === "admin" && (
-                <div className="flex flex-row items-center justify-between lg:justify-start mt-8 lg:mt-0 lg:flex-col ">
-                  <button className="bg-white rounded  lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3" onClick={handleEdit}>
-                  <FaEdit /><span className="ms-4 block lg:hidden">Edit</span>
-                  </button> 
-                  <button className="bg-white rounded lg:rounded-full text-4xl p-3 mt-8 md:mt-0 text-red-500 lg:text-3xl lg:mt-8 flex items-center justify-center" onClick={handleDelete}>
-                  <MdDelete /><span className="ms-4 block lg:hidden">Delete Book</span>
+              {isLoggedIn === true && role === "admin" && (
+                <div className="flex  flex-col md:flex-row items-center justify-between lg:justify-start mt-8 lg:mt-0 lg:flex-col ">
+                  <Link
+                    to={`/updateBook/${id}`}
+                    className="bg-white rounded lg:rounded-full flex items-center justify-center lg:text-3xl text-4xl p-3"
+                  >
+                    <FaEdit />
+                    <span className="ms-4 block lg:hidden">Edit</span>
+                  </Link>
+                  <button
+                    onClick={deleteBook}
+                    className="bg-white rounded lg:rounded-full text-4xl p-3 mt-8 md:mt-0 text-red-500 lg:text-3xl lg:mt-8 flex items-center justify-center"
+                  >
+                    <MdDelete />
+                    <span className="ms-4 block lg:hidden">Delete Book</span>
                   </button>
                 </div>
               )}
