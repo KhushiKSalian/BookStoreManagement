@@ -112,8 +112,8 @@ const ViewBookDetails = () => {
               {Data.title}
             </h1>
             <p className="text-zinc-400 mt-1">by {Data.author}</p>
-            <p className="text-zinc-500 mt-4 text-xl">{Data.desc}</p>
-            <p className="flex mt-4 items-center justify-start text-zinc-400">
+            <p className="text-zinc-500 justify-start mt-4 text-justify text-xl">{Data.desc}</p>
+            <p className="flex mt-4 items-center text-zinc-400">
               <GrLanguage className="me-3" /> {Data.language}
             </p>
             <p className="text-zinc-100 mt-4 text-3xl font-semibold">
