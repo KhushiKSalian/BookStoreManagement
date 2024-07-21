@@ -47,10 +47,10 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
           <img
             className="h-10 me-4"
-            src="https://cdn-icons-png.flaticon.com/128/5833/5833290.png"
+            src="https://cdn-icons-png.flaticon.com/128/10433/10433048.png"
             alt="logo"
           />
-          <h1 className="text-2xl font-semibold">Bookstore</h1>
+          <h1 className="text-2xl font-semibold">Book Store</h1>
         </Link>
         <div className="nav-links-bookheaven block md:flex items-center gap-4">
           <div className=" hidden md:flex gap-4">
