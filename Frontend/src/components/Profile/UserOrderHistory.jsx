@@ -34,7 +34,6 @@ const UserOrderHistory = () => {
             <h1 className="text-5xl lg:text-6xl font-semibold text-zinc-400">
               No Order History
             </h1>
-            <img src="empty-cart.png" />
           </div>
         </div>
       )}

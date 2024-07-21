@@ -30,9 +30,9 @@ const BookCard = ({ data, favourite }) => {
           <div className="bg-zinc-900 rounded flex items-center justify-center">
             <img src={data.url} alt={data.title} className="h-[25vh]" />
           </div>
-          <h2 className="mt-4 text-xl font-semibold">{data.title}</h2>
+          <h2 className="mt-4 text-zinc-400 text-xl font-semibold">{data.title}</h2>
           <p className="mt-2 text-zinc-400 font-semibold">by {data.author}</p>
-          <p className="mt-2 text-zinc-200 font-semibold text-xl">$ {data.price}</p>
+          <p className="mt-2 text-zinc-200 font-semibold text-xl">₹ {data.price}</p>
         </div>
       </Link>
       {favourite && (
