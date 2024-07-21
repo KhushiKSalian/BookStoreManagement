@@ -92,7 +92,7 @@ const UserOrderHistory = () => {
                   ) : items.status === "Cancelled" ? (
                     <div className="text-red-500">{items.status}</div>
                   ) : (
-                    items.status
+                    <div className="text-green-500">{items.status}</div>
                   )}
                 </h1>
               </div>

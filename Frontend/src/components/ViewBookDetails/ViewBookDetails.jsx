@@ -117,7 +117,7 @@ const ViewBookDetails = () => {
               <GrLanguage className="me-3" /> {Data.language}
             </p>
             <p className="text-zinc-100 mt-4 text-3xl font-semibold">
-              Price:${Data.price}{" "}
+              Price: ₹{Data.price}{" "}
             </p>
           </div>
         </div>

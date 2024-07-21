@@ -1,3 +1,4 @@
+
 const {authenticateToken} = require("./userAuth");
 const Book = require("../models/book");
 const Order = require("../models/order");
@@ -12,11 +13,11 @@ router.post("/place-order", authenticateToken , async(req,res)=>{
             const newOrder = new Order({user:id, book:orderData._id});
             const orderDataFromDb = await newOrder.save();
 
-            await User.findByIdandUpdate(id,{
+            await User.findByIdAndUpdate(id,{
                 $push:{orders:orderDataFromDb._id},
             });
 
-            await User.findByIdandUpdate(id,{
+            await User.findByIdAndUpdate(id,{
                 $pull:{cart :orderData._id},
             });
         }
